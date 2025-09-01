@@ -1,0 +1,28 @@
+{
+  "name": "faas.js",
+  "version": "1.0.0",
+  "description": "一个 文件即服务的 docker 镜像, 支持js/ts",
+  "main": "index.ts",
+  "scripts": {
+    "test": "bun test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Yrobot/FaaS.js.git"
+  },
+  "keywords": [
+    "faas",
+    "js",
+    "ts",
+    "bun.sh",
+    "yrobot",
+    "docker",
+    "api"
+  ],
+  "author": "https://github.com/Yrobot",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/Yrobot/FaaS.js/issues"
+  },
+  "homepage": "https://github.com/Yrobot/FaaS.js#readme"
+}
