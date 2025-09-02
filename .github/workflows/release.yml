@@ -23,11 +23,11 @@ jobs:
         run: echo "VERSION=$(jq -r .version package.json)" >> $GITHUB_ENV
 
       # https://github.com/marketplace/actions/push-to-ghcr
-      - name: Build and publish a Docker image for $IMAGE_NAME
+      - name: Build and publish a Docker image for ${{ env.IMAGE_NAME }}"
         uses: macbre/push-to-ghcr@master
         with:
-          image_name: $IMAGE_NAME
+          image_name: ${{ env.IMAGE_NAME }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          docker_io_token: ${{ secrets.DOCKER_IO_ACCESS_TOKEN }}  # see https://hub.docker.com/settings/security
+          docker_io_token: ${{ secrets.DOCKER_IO_ACCESS_TOKEN }} # see https://hub.docker.com/settings/security
           docker_io_user: yrobot
-          extra_args: "--tag $IMAGE_NAME:$VERSION --tag $IMAGE_NAME:latest"
+          extra_args: "--tag ${{ env.IMAGE_NAME }}:${{ env.VERSION }} --tag ${{ env.IMAGE_NAME }}:latest"
