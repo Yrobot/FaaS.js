@@ -100,6 +100,7 @@ jobs:
             # 运行容器
             docker run -d -p 3000:3000 --name ${{ env.IMAGE_NAME }} \
               -v $DOCKER_DATA_DIR/${{ env.IMAGE_NAME }}/app:/app \
+              --user $(id -u):$(id -g) \ # 推荐使用当前用户作为运行用户，这影响到文件权限 # 便于直接在此文件系统下debug和增加逻辑
               ${{ env.HUB_SPACE }}/${{ env.IMAGE_NAME }}:latest
             ```
           draft: false
