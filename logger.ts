@@ -42,7 +42,8 @@ class Logger {
   private getLevelIcon(level: LogLevel): string {
     switch (level) {
       case "INFO":
-        return "📘";
+        return "";
+      // return "📘";
       case "WARN":
         return "⚠️ ";
       case "ERROR":
@@ -52,7 +53,8 @@ class Logger {
       case "DEBUG":
         return "🔍";
       default:
-        return "📄";
+        return "";
+      // return "📄";
     }
   }
 

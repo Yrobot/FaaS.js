@@ -6,7 +6,8 @@
   "scripts": {
     "start": "bun run index.ts",
     "dev": "bun --watch index.ts",
-    "test": "bun test"
+    "test": "bun test",
+    "build": "VERSION=$(bun --print \"require('./package.json').version\") && docker build -t faas-js:$VERSION -t faas-js:latest ."
   },
   "repository": {
     "type": "git",

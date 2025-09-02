@@ -114,7 +114,7 @@ async function handleRequest(req: Request): Promise<Response> {
     const handler = await loadRouteHandler(filepath);
 
     if (!handler) {
-      logger.error(`❌ Failed to load handler: ${filepath}`);
+      logger.error(`Failed to load handler: ${filepath}`);
       return ErrorHandler.createErrorResponse("HANDLER_LOAD_FAILED", {
         filepath,
       });
@@ -161,13 +161,13 @@ async function handleRequest(req: Request): Promise<Response> {
     };
 
     console.log = (...args: any[]) => {
-      logger.info(`    📝 ${args.join(" ")}`);
+      logger.info(`    ${args.join(" ")}`);
     };
     console.error = (...args: any[]) => {
-      logger.error(`    ❌ ${args.join(" ")}`);
+      logger.error(`    ${args.join(" ")}`);
     };
     console.warn = (...args: any[]) => {
-      logger.warn(`    ⚠️  ${args.join(" ")}`);
+      logger.warn(`    ${args.join(" ")}`);
     };
 
     try {
@@ -175,7 +175,7 @@ async function handleRequest(req: Request): Promise<Response> {
 
       resetConsole();
 
-      logger.success(`✅ ${method} ${pathname} -> ${response.status}`);
+      logger.info(`✅ ${method} ${pathname} -> ${response.status}`);
 
       return response;
     } catch (handlerError) {
@@ -183,7 +183,7 @@ async function handleRequest(req: Request): Promise<Response> {
       throw handlerError;
     }
   } catch (error) {
-    logger.error(`💥 Request failed: ${method} ${pathname}`, error);
+    logger.error(`Request failed: ${method} ${pathname}`, error);
     return handleError(error, { method, pathname });
   }
 }

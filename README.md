@@ -17,7 +17,7 @@ export function GET(req: Request) {
 ## Quick Start
 
 ```bash
-docker run -d -p 8080:8080 --name faas-js \
+docker run -d -p 3000:3000 --name faas-js \
   -v $DOCKER_DATA_DIR/faas-js/app:/app \
   -e POST=3000 \
   ghcr.io/yrobot/faas-js:latest
