@@ -14,6 +14,10 @@ COPY package.json /backups/package.json
 COPY tsconfig.json /backups/tsconfig.json
 COPY api/health/index.ts /backups/api/health/index.ts
 
+
+# 复制文件到app
+COPY .gitignore /app/.gitignore
+
 # 设置环境变量
 ENV PORT=3000
 ENV NODE_ENV=production
