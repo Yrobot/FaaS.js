@@ -4,6 +4,8 @@
   "description": "一个 文件即服务的 docker 镜像, 支持js/ts",
   "main": "index.ts",
   "scripts": {
+    "start": "bun run index.ts",
+    "dev": "bun --watch index.ts",
     "test": "bun test"
   },
   "repository": {
@@ -24,5 +26,8 @@
   "bugs": {
     "url": "https://github.com/Yrobot/FaaS.js/issues"
   },
-  "homepage": "https://github.com/Yrobot/FaaS.js#readme"
+  "homepage": "https://github.com/Yrobot/FaaS.js#readme",
+  "devDependencies": {
+    "@types/bun": "^1.2.21"
+  }
 }

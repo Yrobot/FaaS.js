@@ -18,12 +18,12 @@ export function GET(req: Request) {
 
 ```bash
 docker run -d -p 8080:8080 --name faas-js \
-  -v $DOCKER_DIR_FAASJS/app:/app \
+  -v $DOCKER_DATA_DIR/faas-js/app:/app \
   -e POST=3000 \
   ghcr.io/yrobot/faas-js:latest
 ```
 
-### 在 `$DOCKER_DIR_FAASJS/app/api` 下添加 ts 文件
+### 在 `app/api` 下添加 ts 文件
 
 > 文件 export 的 函数 需符合 Bun.serve 接口定义规范
 > https://bun.com/docs/api/http#bun-serve
@@ -50,3 +50,25 @@ export function POST(req: Request) {
   });
 }
 ```
+
+## TODO
+
+### 支持 Dynamic Routes
+
+- `/api/xxx/:id`
+- `/api/:scope/:id`
+
+### 支持 Wildcard Routes
+
+- `/api/all/*`
+
+### 匹配优先级
+
+> https://bun.com/docs/api/http#route-precedence
+
+Routes are matched in order of specificity:
+
+1. Exact routes (/users/all)
+2. Parameter routes (/users/:id)
+3. Wildcard routes (/users/\_)
+4. Global catch-all (/\_)
