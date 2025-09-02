@@ -1,0 +1,33 @@
+name: release pipeline
+
+on:
+  push:
+    branches:
+      - release
+  workflow_dispatch: # 允许手动触发
+
+env:
+  IMAGE_NAME: yrobot/faas-js
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 检出代码
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # 获取版本号
+      - name: Set $VERSION
+        run: echo "VERSION=$(jq -r .version package.json)" >> $GITHUB_ENV
+
+      # https://github.com/marketplace/actions/push-to-ghcr
+      - name: Build and publish a Docker image for $IMAGE_NAME
+        uses: macbre/push-to-ghcr@master
+        with:
+          image_name: $IMAGE_NAME
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          docker_io_token: ${{ secrets.DOCKER_IO_ACCESS_TOKEN }}  # see https://hub.docker.com/settings/security
+          docker_io_user: yrobot
+          extra_args: "--tag $IMAGE_NAME:$VERSION --tag $IMAGE_NAME:latest"
