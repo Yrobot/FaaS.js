@@ -87,20 +87,20 @@ jobs:
             ## 🚀 Release ${{ env.VERSION }}
             
             ### 📦 Docker 镜像
-            - **镜像地址**: https://hub.docker.com/r/${{ env.HUB_SPACE }}/${{ env.IMAGE_NAME }}
-              - \`${{ env.HUB_SPACE }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}\`
-              - \`ghcr.io/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}\`
+            - **镜像地址**: 
+              - https://hub.docker.com/r/${{ env.HUB_SPACE }}/${{ env.IMAGE_NAME }}
+              - ${{ env.HUB_SPACE }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}
+              - ghcr.io/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}
 
             ### 🔧 使用方法
-            \`\`\`bash
+            ```bash
             # 拉取镜像
             docker pull ${{ env.HUB_SPACE }}/${{ env.IMAGE_NAME }}:latest
             
             # 运行容器
             docker run -d -p 3000:3000 --name ${{ env.IMAGE_NAME }} \
               -v $DOCKER_DATA_DIR/${{ env.IMAGE_NAME }}/app:/app \
-              -e POST=3000 \
               ${{ env.HUB_SPACE }}/${{ env.IMAGE_NAME }}:latest
-            \`\`\`
+            ```
           draft: false
           prerelease: false
