@@ -9,7 +9,6 @@ on:
 env:
   IMAGE_NAME: faas-js
   HUB_SPACE: yrobot
-  GHCR_SPACE: yrobot
 
 jobs:
   docker:
@@ -31,7 +30,7 @@ jobs:
         uses: docker/login-action@v3
         with:
           registry: ghcr.io
-          username: ${{ github.actor }}
+          username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
       # 登录 Docker Hub
@@ -53,7 +52,7 @@ jobs:
         with:
           images: |
             ${{ env.HUB_SPACE }}/${{ env.IMAGE_NAME }}
-            ghcr.io/${{ env.GHCR_SPACE }}/${{ env.IMAGE_NAME }}
+            ghcr.io/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}
           tags: |
             type=raw,value=${{ env.VERSION }}
             type=raw,value=latest
