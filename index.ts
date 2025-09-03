@@ -148,38 +148,13 @@ async function handleRequest(req: Request): Promise<Response> {
     // 执行处理器
     logger.info(`🔧 Executing ${handler.default ? "default" : method} handler`);
 
-    // 重定向 console.log 以添加缩进
-    const originalLog = console.log;
-    const originalError = console.error;
-    const originalWarn = console.warn;
-
-    const resetConsole = () => {
-      // 恢复原始 console
-      console.log = originalLog;
-      console.error = originalError;
-      console.warn = originalWarn;
-    };
-
-    console.log = (...args: any[]) => {
-      logger.info(`    ${args.join(" ")}`);
-    };
-    console.error = (...args: any[]) => {
-      logger.error(`    ${args.join(" ")}`);
-    };
-    console.warn = (...args: any[]) => {
-      logger.warn(`    ${args.join(" ")}`);
-    };
-
     try {
       const response = await methodHandler(req);
-
-      resetConsole();
 
       logger.info(`✅ ${method} ${pathname} -> ${response.status}`);
 
       return response;
     } catch (handlerError) {
-      resetConsole();
       throw handlerError;
     }
   } catch (error) {

@@ -20,6 +20,7 @@ export function GET(req: Request) {
 docker run -d -p 3000:3000 --name faas-js \
   -v $DOCKER_DATA_DIR/faas-js/app:/app \
   -e POST=3000 \
+  --user $(id -u):$(id -g) \ # 推荐使用当前用户作为运行用户，这影响到文件权限 # 便于直接在此文件系统下debug和增加逻辑
   ghcr.io/yrobot/faas-js:latest
 ```
 
