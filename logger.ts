@@ -106,18 +106,19 @@ class Logger {
   error(message: string, error?: any): void {
     console.error(this.formatLogEntry("ERROR", message));
     if (error) {
-      const errorStr =
-        error instanceof Error
-          ? `${error.name}: ${error.message}\n${error.stack}`
-          : JSON.stringify(error, null, 2);
-      console.error(
-        "\x1b[31m    💥 Error Details:\n" +
-          errorStr
-            .split("\n")
-            .map((line) => `    ${line}`)
-            .join("\n") +
-          "\x1b[0m"
-      );
+      console.error(error);
+      // const errorStr =
+      //   error instanceof Error
+      //     ? `${error.name}: ${error.message}\n${error.stack}`
+      //     : JSON.stringify(error, null, 2);
+      // console.error(
+      //   "\x1b[31m    💥 Error Details:\n" +
+      //     errorStr
+      //       .split("\n")
+      //       .map((line) => `    ${line}`)
+      //       .join("\n") +
+      //     "\x1b[0m"
+      // );
     }
   }
 
