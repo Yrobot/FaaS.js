@@ -5,9 +5,9 @@
   "main": "index.ts",
   "scripts": {
     "start": "bun run index.ts",
-    "dev": "VERSION=$(bun --print \"require('./package.json').version\") bun --watch index.ts",
+    "dev": "VERSION=$(grep -m1 version package.json | cut -d'\"' -f4) bun --watch index.ts",
     "test": "bun test",
-    "build": "VERSION=$(bun --print \"require('./package.json').version\") && docker build -t faas-js:$VERSION -t faas-js:latest ."
+    "build": "VERSION=$(grep -m1 version package.json | cut -d'\"' -f4) && docker build -t faas-js:$VERSION -t faas-js:latest ."
   },
   "repository": {
     "type": "git",
