@@ -21,7 +21,8 @@ COPY .gitignore /app/.gitignore
 # 设置环境变量
 ENV PORT=3000
 ENV NODE_ENV=production
-ENV VERSION=$(bun --print "require('./package.json').version")
+RUN VERSION=$(grep -m1 version package.json | cut -d'"' -f4) && \
+      echo "VERSION=$VERSION" > /etc/environment
 
 # 暴露端口
 EXPOSE 3000
