@@ -1,6 +1,6 @@
 {
   "name": "faas.js",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "一个 文件即服务的 docker 镜像, 支持js/ts",
   "main": "index.ts",
   "scripts": {
