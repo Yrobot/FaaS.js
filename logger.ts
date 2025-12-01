@@ -8,23 +8,24 @@
 
 type LogLevel = "INFO" | "WARN" | "ERROR" | "SUCCESS" | "DEBUG";
 
-interface LogEntry {
-  level: LogLevel;
-  message: string;
-  timestamp: string;
-  error?: any;
-}
+export const VERSION = process.env.VERSION || "0.0.0";
 
-export const banner = `
-╔══════════════════════════════════════╗
-║            🚀 FaaS.js                ║
-║        File as a Service             ║
-║             @yrobot                  ║
-║                                      ║
-║  Transform your files into APIs      ║
-║  Powered by Bun.sh                   ║
-╚══════════════════════════════════════╝
-    `;
+export const banner = (() => {
+  const LEN = 38;
+  const lines = [
+    `FaaS.js v${VERSION}`,
+    `File as a Service`,
+    `@yrobot`,
+    "",
+    "Transform your files into APIs",
+    "Powered by Bun.sh",
+  ];
+  return `
+╔${"".padEnd(LEN, "═")}╗
+${lines.map((line) => `║  ${line.padEnd(LEN - 2, " ")}║`).join("\n")}
+╚${"".padEnd(LEN, "═")}╝
+`;
+})();
 
 class Logger {
   private formatTimestamp(): string {
