@@ -168,6 +168,7 @@ async function handleRequest(req: Request): Promise<Response> {
  */
 const server = Bun.serve({
   port: PORT,
+  idleTimeout: parseInt(process.env.IDEL_TIMEOUT || "60"),
 
   async fetch(req) {
     // const url = new URL(req.url);
